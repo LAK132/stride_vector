@@ -34,8 +34,11 @@ struct stride_vector
     vector<unsigned char> data;
     stride_vector();
     stride_vector(size_t size);
+    stride_vector(size_t str, size_t size);
     stride_vector(const stride_vector& other);
     stride_vector(stride_vector&& other);
+    void init(size_t size);
+    void init(size_t str, size_t size);
     stride_vector& operator=(const stride_vector& other);
     stride_vector& operator=(stride_vector&& other);
     vector<unsigned char> operator[](size_t idx) const;
@@ -67,8 +70,8 @@ struct stride_vector
         stride_vector rtn;
         return rtn = other;
     }
-    static stride_vector interleave(const vector<stride_vector>& vecs);
-    static stride_vector interleave(vector<stride_vector>&& vecs);
+    static stride_vector interleave(const vector<stride_vector*>& vecs);
+    static stride_vector interleave(vector<stride_vector*>&& vecs);
 };
 
 #endif // STRIDE_VECTOR_H
